@@ -13,7 +13,7 @@ Theodore D. Satterthwaite
 Zaixu Cui (imaging)    
 Jakob Seidlitz (genetics)
 
-### Collaborators 
+### Collaborators
 Jakob Seidlitz, Zaixu Cui, Azeez Adebimpe, Danielle S. Bassett, Maxwell A. Bertolero, Christos Davatzikos, Damien A. Fair, Raquel E. Gur, Ruben C. Gur, Hongming Li, Adam Pines, Armin Raznahan, David R. Roalf, Russell T. Shinohara, Jacob Vogel, Daniel H. Wolf, Yong Fan, Aaron Alexander-Bloch  
 
 ### Project Start Date
@@ -28,7 +28,7 @@ PNC
 ### Github Repository
 <https://github.com/sheilashanmugan/funcParcelSexDiff>
 
-### Path to Data on Filesystem 
+### Path to Data on Filesystem
 /cbica/projects/funcParcelSexDiff/data
 
 ### Publication DOI
@@ -45,9 +45,9 @@ The steps below detail how to replicate this project, including statistical anal
 ### Atlas Generation and Network Parcellation  
 1. Sample selection, atlas generation, and individual network parcellation.  
 
-    > These steps were completed as part of prior work (Cui et al., 2020) using scripts located at [https://github.com/ZaixuCui/pncSingleFuncParcel](https://github.com/ZaixuCui/pncSingleFuncParcel) <br> 
+    > These steps were completed as part of prior work (Cui et al., 2020) using scripts located at [https://github.com/ZaixuCui/pncSingleFuncParcel](https://github.com/ZaixuCui/pncSingleFuncParcel) <br>
     <br>
-    > Loading matrices for each of the 693 subjects used in this project can be found here: /cbica/projects/funcParcelSexDiff/data/Revision/SingleParcellation/SingleAtlas_Analysis/FinalAtlasLoading <br> 
+    > Loading matrices for each of the 693 subjects used in this project can be found here: /cbica/projects/funcParcelSexDiff/data/Revision/SingleParcellation/SingleAtlas_Analysis/FinalAtlasLoading <br>
     <br>
     The following steps use this preprocessed data.  
 
@@ -66,7 +66,7 @@ The steps below detail how to replicate this project, including statistical anal
 <br>
 4. Run SVM with [/SVM_scripts/run_SVM/SVM_sex_2fold_CSelect_Cov_SubIndex_Perm_20200719.m](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/SVM_scripts/run_SVM/SVM_sex_2fold_CSelect_Cov_SubIndex_Perm_20200719.m)  
 
-    > This frist part of this script (100 Repeat) submits 100 jobs, each of which are one of the 100 repetitions of SVM predictions. 
+    > This frist part of this script (100 Repeat) submits 100 jobs, each of which are one of the 100 repetitions of SVM predictions.
     > The second part of this script (Permutation, 1000 times) submits 1000 jobs, each of which are one of 1000 permutations that will be used for significane testing of accuracy. In each run, sex is permuted across the training subset without replacement.   
 <br>
 
@@ -104,7 +104,7 @@ The steps below detail how to replicate this project, including statistical anal
 
     > This script creates the plot in Figure 3b
 <br>
-  
+
 ### Univariate approach
 1. Submit [atlasLoadingScripts/sexEffect_atlasLoading_20200612.R](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/atlasLoadingScripts/sexEffect_atlasLoading_20200612.R) to qsub to calculate effect of sex on atlas loadings   
 
@@ -115,7 +115,7 @@ The steps below detail how to replicate this project, including statistical anal
 
 2. Write effect map for each network with [WriteEffectMap/WriteEffectMap_Workbench_Sex_20200712.m](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/WriteEffectMap/WriteEffectMap_Workbench_Sex_20200712.m)
 
-    > This script takes the output of the GAMs from step 1 and creates the CIFTI files of the effect of sex at each vertex. 
+    > This script takes the output of the GAMs from step 1 and creates the CIFTI files of the effect of sex at each vertex.
 <br>
 
 3. Create Figure 4A with [WriteEffectMap/WriteEffectMap_Workbench_Sex_AbsSum_20200712.m](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/WriteEffectMap/WriteEffectMap_Workbench_Sex_AbsSum_20200712.m)
@@ -143,16 +143,16 @@ The steps below detail how to replicate this project, including statistical anal
 
     > This directory contains functions called in subsequent steps. These functions were originally downloaded from [here](https://github.com/spin-test/spin-test)  
 <br>
-    
+
 2. Prepare data for spin test with [spintest/prepare_data_for_spintest_20201104.R](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/spintest/prepare_data_for_spintest_20201104.R)  
 
     > This script formats data for the spin test.
 <br>
 
-    
+
 3. Run spin test with [spintest/spinSVMvsGAM.m](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/spintest/spinSVMvsGAM.m)  
 
-    >This script runs the spin test to compare the map of summed absolute prediction weights from our machine learning model (Figure 3D) to a map of GAM effect size (Figure 4A) 
+    >This script runs the spin test to compare the map of summed absolute prediction weights from our machine learning model (Figure 3D) to a map of GAM effect size (Figure 4A)
 <br>
 
 4. Create hex spin plot with [spintest/hexplots_20210301.R](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/spintest/hexplots_20210301.R)  
@@ -161,18 +161,18 @@ The steps below detail how to replicate this project, including statistical anal
 <br>
 
 
-### Gene enrichment analysis 
+### Gene enrichment analysis
 ###Schaefer 1000
 1. Download data from [https://figshare.com/articles/dataset/AHBAdata/6852911](https://figshare.com/articles/dataset/AHBAdata/6852911)   
 
-    > Download `AHBAProcessed.zip` and `AHBAData.zip` 
+    > Download `AHBAProcessed.zip` and `AHBAData.zip`
 <br>
 
-2. Read annotation file from figshare into Matlab 
+2. Read annotation file from figshare into Matlab
 
-    > Annotation file is in `AHBAData/data/genes/parcellations/lh.Schaefer1000_7net.annot` <br> 
+    > Annotation file is in `AHBAData/data/genes/parcellations/lh.Schaefer1000_7net.annot` <br>
     <br>
-    > [v, L, ct] = read_annotation('/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/lh.Schaefer1000_7net.annot') <br> 
+    > [v, L, ct] = read_annotation('/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/lh.Schaefer1000_7net.annot') <br>
     <br>
     > save column 5 from `ct.table` as `lh_Schaefer1000_7net_cttable.csv`  
     > save `L` as `lh_Schaefer1000_7net_L.csv`
@@ -180,18 +180,20 @@ The steps below detail how to replicate this project, including statistical anal
 
 3. Save probe annotation file
 
-    > Open `ROIxGene_Schaefer1000_INT.mat` in matlab <br> 
+    > Open `ROIxGene_Schaefer1000_INT.mat` in matlab <br>
     <br>
-    > Gene = cell2table(probeInformation.GeneSymbol); <br> 
+    > Gene = cell2table(probeInformation.GeneSymbol); <br>
     <br>
     > writetable(Gene, '/Users/sheilash/Desktop/projects/pfn_sex_diff/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer1000/GeneSymbol.csv')  
 <br>
 
 4. Calculate chromosome enrichements with [https://figshare.com/articles/dataset/AHBAdata/6852911](https://figshare.com/articles/dataset/AHBAdata/6852911)   
 
-    > Open `ROIxGene_Schaefer1000_INT.mat` in matlab <br> 
+    > Open `ROIxGene_Schaefer1000_INT.mat` in matlab <br>
     <br>
-    > Gene = cell2table(probeInformation.GeneSymbol); <br> 
+    > Gene = cell2table(probeInformation.GeneSymbol); <br>
     <br>
     > writetable(Gene, '/Users/sheilash/Desktop/projects/pfn_sex_diff/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer1000/GeneSymbol.csv')  
 <br>
+
+eakfbk
