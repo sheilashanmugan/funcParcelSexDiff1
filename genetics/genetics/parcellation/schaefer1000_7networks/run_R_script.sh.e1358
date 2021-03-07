@@ -1,0 +1,28 @@
+Conflicting module "gcc/4.9.2" detected and automatically unloaded.
+
+R.matlab v3.6.2 (2018-09-26) successfully loaded. See ?R.matlab for help.
+
+Attaching package: 'R.matlab'
+
+The following objects are masked from 'package:base':
+
+    getOption, isOpen
+
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: 'data.table'
+
+The following objects are masked from 'package:dplyr':
+
+    between, first, last
+

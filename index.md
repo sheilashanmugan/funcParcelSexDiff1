@@ -77,7 +77,12 @@ The steps below detail how to replicate this project, including statistical anal
 
 6. Visualize files in workbench (Figures 3C and 3D)
 
-    > /Applications/workbench/bin_macosx64/wb_view /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/rh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/lh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/Group_Loading_17Networks/*dscalar* /cbica/projects/funcParcelSexDiff/results/PredictionAnalysis/SVM/2fold_CSelect_Cov_SubIndex/Sex_CovAgeMotion/Permutation/res_MultiTimes/AtlasLoading/WeightVisualize_Sex_SVM_2fold_CSelect_Cov_MultiTimes/First25Percent/w_Brain_Sex_First25Percent_Network_*.dscalar.nii /cbica/projects/funcParcelSexDiff/results/PredictionAnalysis/SVM/2fold_CSelect_Cov_SubIndex/Sex_CovAgeMotion/Permutation/res_MultiTimes/AtlasLoading/WeightVisualize_Sex_SVM_2fold_CSelect_Cov_MultiTimes/w_Brain_Sex_Abs_sum.dscalar.nii &
+    > /Applications/workbench/bin_macosx64/wb_view /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/rh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/lh.inflated.surf.gii /cbica/projects/funcParcelSexDiff/results/PredictionAnalysis/SVM/2fold_CSelect_Cov_SubIndex/Sex_CovAgeMotion/Permutation/res_MultiTimes/AtlasLoading/WeightVisualize_Sex_SVM_2fold_CSelect_Cov_MultiTimes/First25Percent/w_Brain_Sex_First25Percent_Network_9.dscalar.nii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/Group_Loading_17Networks/Group_AtlasLoading_Network_9.dscalar.nii &
+        <br>
+        > /Applications/workbench/bin_macosx64/wb_view /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/rh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/lh.inflated.surf.gii /cbica/projects/funcParcelSexDiff/results/PredictionAnalysis/SVM/2fold_CSelect_Cov_SubIndex/Sex_CovAgeMotion/Permutation/res_MultiTimes/AtlasLoading/WeightVisualize_Sex_SVM_2fold_CSelect_Cov_MultiTimes/First25Percent/w_Brain_Sex_First25Percent_Network_12.dscalar.nii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/Group_Loading_17Networks/Group_AtlasLoading_Network_12.dscalar.nii &
+        <br>
+        > /Applications/workbench/bin_macosx64/wb_view /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/rh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/lh.inflated.surf.gii /cbica/projects/funcParcelSexDiff/results/PredictionAnalysis/SVM/2fold_CSelect_Cov_SubIndex/Sex_CovAgeMotion/Permutation/res_MultiTimes/AtlasLoading/WeightVisualize_Sex_SVM_2fold_CSelect_Cov_MultiTimes/w_Brain_Sex_Abs_sum.dscalar.nii &
+        
 <br>
 
 7. Calculate summary statistics with [SVM_scripts/calc_accuracy/average_acc_sens_spec_SVM_multiTimes_20200720.m](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/SVM_scripts/calc_accuracy/average_acc_sens_spec_SVM_multiTimes_20200720.m)
@@ -125,7 +130,13 @@ The steps below detail how to replicate this project, including statistical anal
 
 4. Visualize files in workbench (Figure 4A, 4D, and 4E)
 
-    > /Applications/workbench/bin_macosx64/wb_view /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/rh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/lh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/Group_Loading_17Networks/*dscalar* /cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects/Gam_Z_FDR_Sig_Vector_All_Sex_Network_* /cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects/UnthreshAbsSum/Gam_Sex_Abs_sum.dscalar.nii &
+    > /Applications/workbench/bin_macosx64/wb_view /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/rh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/lh.inflated.surf.gii /cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects/UnthreshAbsSum/Gam_Sex_Abs_sum.dscalar.nii &
+    <br>
+    > /Applications/workbench/bin_macosx64/wb_view /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/rh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/lh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/Group_Loading_17Networks/Group_AtlasLoading_Network_9.dscalar.nii /cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects/Gam_Z_FDR_Sig_Vector_All_Sex_Network_9.dscalar.nii &
+    <br>
+    > /Applications/workbench/bin_macosx64/wb_view /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/rh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/spec_files/lh.inflated.surf.gii /Users/sheilash/Desktop/projects/pfn_sex_diff/inputData/Group_Loading_17Networks/Group_AtlasLoading_Network_12.dscalar.nii /cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects/Gam_Z_FDR_Sig_Vector_All_Sex_Network_12.dscalar.nii &
+    <br>
+
 <br>
 
 5. Aggregate group level matricies with [WriteEffectMap/barplots/Make_SexEffects_mat_gam_FDR_sig.m](https://github.com/sheilashanmugan/funcParcelSexDiff/blob/gh-pages/WriteEffectMap/barplots/Make_SexEffects_mat_gam_FDR_sig.m)
@@ -162,7 +173,7 @@ The steps below detail how to replicate this project, including statistical anal
 
 
 ### Gene enrichment analysis
-###Schaefer 1000
+### Schaefer 1000
 1. Download data from [https://figshare.com/articles/dataset/AHBAdata/6852911](https://figshare.com/articles/dataset/AHBAdata/6852911)   
 
     > Download `AHBAProcessed.zip` and `AHBAData.zip`
@@ -196,4 +207,4 @@ The steps below detail how to replicate this project, including statistical anal
     > writetable(Gene, '/Users/sheilash/Desktop/projects/pfn_sex_diff/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer1000/GeneSymbol.csv')  
 <br>
 
-eakfbk
+
