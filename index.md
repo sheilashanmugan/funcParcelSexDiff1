@@ -172,8 +172,8 @@ The steps below detail how to replicate this project, including statistical anal
 <br>
 
 
-### Gene enrichment analysis
-### Schaefer 1000
+### Chromosomal enrichment analysis
+### Schaefer 1000, Fornito annotation strategy
 1. Download data from [https://figshare.com/articles/dataset/AHBAdata/6852911](https://figshare.com/articles/dataset/AHBAdata/6852911)   
 
     > Download `AHBAProcessed.zip` and `AHBAData.zip`
@@ -198,13 +198,50 @@ The steps below detail how to replicate this project, including statistical anal
     > writetable(Gene, '/Users/sheilash/Desktop/projects/pfn_sex_diff/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer1000/GeneSymbol.csv')  
 <br>
 
-4. Calculate chromosome enrichements with [https://figshare.com/articles/dataset/AHBAdata/6852911](https://figshare.com/articles/dataset/AHBAdata/6852911)   
+4. Calculate chromosome enrichements and create Figure 5 with [genetics/genetics/parcellation/schaefer1000_7networks/wSex_cor_gene_schaefer403_net7_20210224.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/parcellation/schaefer1000_7networks/wSex_cor_gene_schaefer403_net7_20210224.R)   
 
-    > Open `ROIxGene_Schaefer1000_INT.mat` in matlab <br>
+    > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, creates ranked gene list for GO enrichements, calculates chromosomal enrichements (with significance testing), and creates figure 5 
+<br>
+
+### Schaefer 300, Fornito annotation strategy
+1. Read annotation file from figshare into Matlab
+
+    > Annotation file is in `AHBAData/data/genes/parcellations/lh.Schaefer300_7net.annot` <br>
+    <br>
+    > [v, L, ct] = read_annotation('/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/lh.Schaefer300_7net.annot') <br>
+    <br>
+    > save column 5 from `ct.table` as `lh_Schaefer300_7net_cttable.csv`  
+    > save `L` as `lh_Schaefer300_7net_L.csv`
+<br>
+
+2. Save probe annotation file
+
+    > Open `ROIxGene_Schaefer300_INT.mat` in matlab <br>
     <br>
     > Gene = cell2table(probeInformation.GeneSymbol); <br>
     <br>
-    > writetable(Gene, '/Users/sheilash/Desktop/projects/pfn_sex_diff/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer1000/GeneSymbol.csv')  
+    > writetable(Gene, '/Users/sheilash/Desktop/projects/pfn_sex_diff/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer300/GeneSymbol.csv')  
 <br>
 
+3. Calculate chromosome enrichements with [genetics/genetics/sensitivity_analyses/fornito/wSex_cor_gene_schaefer300_net7_20201215.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/sensitivity_analyses/fornito/wSex_cor_gene_schaefer300_net7_20201215.R)   
 
+    > This script parcellates map of SVM weights to schafer300, merges gene and imaging data, removes missing parcels, and calculates chromosomal enrichements (with significance testing).
+<br>
+
+### Schaefer 400, Seidlitz annotation strategy
+1. Download all files from [genetics/genetics/allen_processing/geneExpression_Repository](https://github.com/sheilashanmugan/funcParcelSexDiff1/tree/gh-pages/genetics/genetics/allen_processing/geneExpression_Repository)
+
+    > This repository contains scripts that align microarray gene expression data from AHBA donors to the left hemisphere of the Schaefer 400 parcellation. There were originally downloaded from [geneExpression_Repository](https://github.com/RafaelRomeroGarcia/geneExpression_Repository) 
+<br>
+
+2. Run [genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching.m](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching.m)
+
+    > This script specifies the parcellation and mirroring strategy to be used. It then calls functions that download AHBA data, maps probes to genes, estimates gene expression from probes, estimate voxels location of each sample in T1 freesurfer space of each donor, and generate gene expression and coexpression matrices <br>
+    <br>
+    > Save `gene_regional_expression_zscored` as `gene_regional_expression_zscored.mat`
+<br>
+
+3. Calculate chromosome enrichements with [genetics/genetics/sensitivity_analyses/fornito/wSex_cor_gene_schaefer300_net7_20201215.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/sensitivity_analyses/fornito/wSex_cor_gene_schaefer300_net7_20201215.R)   
+
+    > This script parcellates map of SVM weights to schafer300, merges gene and imaging data, removes missing parcels, and calculates chromosomal enrichements (with significance testing).
+<br>

@@ -5,76 +5,44 @@ library(magrittr)
 library(tibble)
 library(ggplot2)
 library(data.table)
-library(ggplot2)
-library(hexbin)
-library(matrixStats)
 
-theme_set(theme_classic(base_size = 16))
-
-#brain input is from SVM run 100x
 # read in LH parc
-lh_schaefer300 <- read.table("/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer300/lh_Schaefer300_7net_L.csv")
-lh_schaefer300 <- lh_schaefer300[1:10242,]
+lh_schaefer400 <- read.table("/cbica/projects/funcParcelSexDiff/inputData/genetics/lh.schaefer400.txt")
+lh_schaefer400 <- lh_schaefer400[1:10242,]
 # read in color lookup table
-lh_schaefer300_ct <- read.table("/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer300/lh_Schaefer300_7net_cttable.csv")
-lh_schaefer300_ct_150 <- as.data.frame(lh_schaefer300_ct[-1,])
-colnames(lh_schaefer300_ct_150) <- "V1"
-setDT(lh_schaefer300_ct_150, keep.rownames = "parcNum")
-
+lh_schaefer400_ct <- read.table("/cbica/projects/funcParcelSexDiff/inputData/genetics/lh.schaefer400.ct.txt")
+lh_schaefer400_ct_200 <- as.data.frame(lh_schaefer400_ct[-1,])
+colnames(lh_schaefer400_ct_200) <- "V1"
 # read in brain img data
 data_brain1 <- readMat("/cbica/projects/funcParcelSexDiff/results/PredictionAnalysis/SVM/2fold_CSelect_Cov_SubIndex/Sex_CovAgeMotion/Permutation/res_MultiTimes/AtlasLoading/WeightVisualize_Sex_SVM_2fold_CSelect_Cov_MultiTimes/w_Brain_Sex_Abs_sum.mat")
 data_brain <-data_brain1$w.Brain.Sex.Abs.sum.lh
 # parcellate data
 data_vec <- as.vector(data_brain)
-data_parc_lh <- cbind(data_vec, lh_schaefer300) %>% as_tibble() %>% group_by(lh_schaefer300) %>% summarise(wt_mean = mean(data_vec))
+data_parc_lh <- cbind(data_vec, lh_schaefer400) %>% as_tibble() %>% group_by(lh_schaefer400) %>% summarise(wt_mean = mean(data_vec))
 
-#order by parcel number for rotations
-data_parc_lh <- subset(data_parc_lh, lh_schaefer300 != "65793")
-data_parc_lh_parcnum <- data_parc_lh
-data_parc_lh_parcnum$parcNum <- "NA"
+data_parc_lh_sort <- data_parc_lh[order(data_parc_lh$lh_schaefer400),]
+data_parc_lh_sort_200 <- subset(data_parc_lh_sort, lh_schaefer400 != "65793", select=-lh_schaefer400)
 
-for (i in 1:150){
-  for (j in 1:150){
-    if (data_parc_lh_parcnum$lh_schaefer300[i] == lh_schaefer300_ct_150$V1[j]){
-      data_parc_lh_parcnum$parcNum[i] <- lh_schaefer300_ct_150$parcNum[j] }}}
-
-data_parc_lh_parcnum$parcNum <- as.numeric(data_parc_lh_parcnum$parcNum)
-data_parc_lh_parcnum_sort <- data_parc_lh_parcnum[order(data_parc_lh_parcnum$parcNum),]
 
 
 ###read in gene data
-geneinfo <- readMat("/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/AHBAprocessed/ROIxGene_Schaefer300_INT.mat")
-geneinfo1 <- lapply(geneinfo, unlist, use.names=FALSE)
-geneMat <- as.data.frame(geneinfo1$parcelExpression)
-geneMat1 <- subset(geneMat, select = -V1)
-gene <- read.csv("/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/schaefer300/GeneSymbol.csv",header=TRUE)
-colnames(gene) <- "V1"
+gene <- read.csv("/cbica/projects/funcParcelSexDiff/inputData/genetics/genes_20647_schaefer_V2.csv",header=FALSE)
+geneMat <- readMat("/cbica/projects/funcParcelSexDiff/inputData/genetics/gene_regional_expression_zscored_Schaefer_V2.mat")
+geneMat1<- as.data.frame(geneMat$gene.regional.expression)
 colnames(geneMat1) <- gene$V1
-geneMat2 <- cbind(lh_schaefer300_ct_150, geneMat1)
-geneMat2$parcNum <- as.numeric(geneMat2$parcNum)
-geneMat2_sort <- geneMat2[order(geneMat2$parcNum),]
-geneMat2_sort_150 <- subset(geneMat2_sort, select=-V1)
+geneMat2 <- cbind(lh_schaefer400_ct_200, geneMat1)
+geneMat2_sort <- geneMat2[order(geneMat2$V1),]
+geneMat2_sort_200 <- subset(geneMat2_sort, select=-V1)
 
+##correlate sorted img and gene data (medial wall value removed in both) for other enrichement analyses
+ #img_gene_corr_mat <- sapply(1:20647, function(x) cor(data_parc_lh_sort_200,geneMat2_sort_200[,x]))
+ #write.csv(gene[order(img_gene_corr_mat,decreasing = TRUE),], "/cbica/projects/funcParcelSexDiff/results/genetics/GO/gene_ranked_wSexMultiTimes100CorGene_20200804.csv", row.names = FALSE,  quote=FALSE) #use ordering of img_gene_corr_mat based on img_gene_corr_mat'sg values, ordeing based on correlations
 
-#merge img, gene, and centroid coord. remove parcels with missing gene data
-img_geneMatChrom_150 <- merge(data_parc_lh_parcnum_sort,geneMat2_sort_150, by="parcNum")
-
-img_geneMatChrom_150_comp <- subset(img_geneMatChrom_150, !is.nan(img_geneMatChrom_150[[5]])) ##if add more columns, change "10". This is the complete DF. Any subsets below should come from here/match this order.
-data_parc_lh_sort_150_comp <- subset(img_geneMatChrom_150_comp, select=wt_mean)
-
-
-othercols <- colnames(data_parc_lh_parcnum_sort)
-geneMatChrom_150_comp <- img_geneMatChrom_150_comp[(length(othercols)+1):(length(colnames(img_geneMatChrom_150_comp)))]
-
-
-
-#Select genes for chromosome enrichement 
-chrom <- read.csv("/cbica/projects/funcParcelSexDiff/inputData/genetics/Richiardi_Data_File_S2_ChrAdded.csv")
+#chech chromosome enrichement 
+chrom <- read.csv("~/cbica/projects/funcParcelSexDiff/inputData/genetics/Richiardi_Data_File_S2_ChrAdded.csv")
 chromRefined <- chrom$chromosome_name[chrom$gene_symbol %in% gene$V1] #16000, which of those are in the 20, 000? indexing the 16000
 geneRefined <- chrom$gene_symbol[chrom$gene_symbol %in% gene$V1] #16000, which of those are in the 20, 000? indexing the 16000
-geneMatChrom_150_comp_fin <-geneMatChrom_150_comp[,match(geneRefined,colnames(geneMatChrom_150_comp),nomatch = 0)] #target gene first. where in #2 is #1
-
-
+geneMatChrom_200 <-geneMat2_sort_200[,match(geneRefined,colnames(geneMat2_sort_200),nomatch = 0)] #target gene first. where in #2 is #1
 
 
 geneRefined_df <- as.data.frame(geneRefined)
@@ -86,18 +54,14 @@ chromGeneRefined <- cbind(chromRefined_df, geneRefined_df)
 
 
 
-t2 <- sapply(1:12986, function(x) cor(data_parc_lh_sort_150_comp,geneMatChrom_150_comp_fin[,x]))
+t2 <- sapply(1:15036, function(x) cor(data_parc_lh_sort_200,geneMatChrom_200[,x]))
 colt2<- as.vector(chromGeneRefined$geneRefined)
 dft2 <- as.data.frame(cbind(colt2, t2))
 colnames(dft2)<- c("gene", "corr")
 
 df3 <- merge(dft2, chromGeneRefined, by.x="gene", by.y="geneRefined", all=TRUE)
+df3$corrSigRanked <- rank(df3$corr) #rank 15036 genes based on correlation with SVM weights
 
-
-
-
-
-df3$corrSigRanked <- rank(df3$corr) #rank 12986 genes based on correlation with SVM weights
 
 #plot for classical method, using df3
 t3 <- sapply(levels(df3$chromRefined)[-1], function(x) median(df3$corrSigRanked[which(df3$chromRefined==x)],na.rm = TRUE)) # which(chromRefined==x) --  get an index of all the trues,,,   indexing out of t2Ranked where chromRefined==x.... find the median of t2Ranked for each of these levels
@@ -112,8 +76,6 @@ t5$t7 <- as.numeric(t5$t7)
 p<-ggplot(data=t5, aes(x=reorder(chromosome, t7), y=t7)) +
   geom_bar(stat="identity") + coord_flip() + xlab("Chromosome") + ylab("Enrichment")
 p
-
-
 
 
 
@@ -154,6 +116,9 @@ for (j in 1:length(t5$chromosome)){
 
 df_enrich_pval <- merge(t5, perm.pval, by = "chromosome")
 df_enrich_pval1 <- df_enrich_pval[with(df_enrich_pval, order(-t7)),]
+
+
+
 
 
 
