@@ -77,15 +77,6 @@ geneMatChrom_500_comp <- img_geneMatChrom_roi_500_comp[(length(othercols)+1):(le
 
 
 
-#correlate sorted img and gene data (medial wall value removed in both) for GO enrichements
-rankedGeneList <- sapply(1:15745, function(x) cor(data_parc_lh_sort_500_comp,geneMatChrom_500_comp[,x]))
-rankedGeneList1<- cbind(gene, rankedGeneList)
-rankedGeneList2 <- rankedGeneList1[with(rankedGeneList1, order(-rankedGeneList)),]
-rankedGeneList3 <- subset(rankedGeneList2, select = V1)
-#write.csv(rankedGeneList3, "/cbica/projects/funcParcelSexDiff/results/genetics/GO/RankedGeneList_wSex100_Cor_schaefer1000Net7_20201123.csv", row.names = FALSE,  quote=FALSE)
-
-
-
 #Select genes for chromosome enrichement 
 chrom <- read.csv("/cbica/projects/funcParcelSexDiff/inputData/genetics/Richiardi_Data_File_S2_ChrAdded.csv")
 chromRefined <- chrom$chromosome_name[chrom$gene_symbol %in% gene$V1] #16000, which of those are in the 20, 000? indexing the 16000
@@ -109,7 +100,7 @@ df3 <- merge(dft2, chromGeneRefined, by.x="gene", by.y="geneRefined", all=TRUE)
 
 df3$corrSigRanked <- rank(df3$corr) #rank genes based on correlation with SVM weights
 
-#plot for classical method, using df3
+#pvalues for classical method, using df3
 t3 <- sapply(levels(df3$chromRefined)[-1], function(x) median(df3$corrSigRanked[which(df3$chromRefined==x)],na.rm = TRUE)) 
 t4<- t3 - median(df3$corrSigRanked) # for the average correlation ranking for each chromosome, how far away it is from the median
 t4
@@ -223,7 +214,7 @@ tiff("/Users/sheilash/Desktop/projects/pfn_sex_diff/paper/figures/genetics/chrom
 p<-ggplot(data=t9, aes(x=chromosome, y=Rank)) +
   geom_bar(stat="identity", fill=colormap$fillcolor ,
            colour = bordermap$BorderColor, linetype = linemap$LineType, width = 0.8) + geom_errorbar(aes(ymin=Rank-se, ymax=Rank+se), width=0.15, size= 0.4, position=position_dodge(.9)) +
-  geom_point(data=t9, aes(y=Rank, x=chromosome), size = 0.8) +
+  geom_point(data=t9, aes(y=Rank, x=chromosome), size = 0.4) +
   coord_flip() + xlab("Chromosome") + ylab("Enrichment") +
   geom_hline(aes(yintercept = as.numeric(0))) +
   ylim(-2799, 1010) +
