@@ -254,7 +254,7 @@ The steps below detail how to replicate this project, including statistical anal
     > Save `gene_regional_expression_zscored` as `gene_regional_expression_zscored_NoF.mat`
 <br>
 
-3. Calculate chromosome enrichements with [genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz_20210308.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz_20210308.R)   
+3. Calculate chromosome enrichements with [genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz%20_NoF_20210308.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz%20_NoF_20210308.R)   
 
     > This script parcellates map of SVM weights to schafer400 and calculates chromosomal enrichements (with significance testing).
 <br>
