@@ -241,7 +241,20 @@ The steps below detail how to replicate this project, including statistical anal
     > Save `gene_regional_expression_zscored` as `gene_regional_expression_zscored.mat`
 <br>
 
-3. Calculate chromosome enrichements with [genetics/genetics/sensitivity_analyses/fornito/wSex_cor_gene_schaefer300_net7_20201215.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/sensitivity_analyses/fornito/wSex_cor_gene_schaefer300_net7_20201215.R)   
+3. Calculate chromosome enrichements with [genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz_20210308.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz_20210308.R)   
 
-    > This script parcellates map of SVM weights to schafer300, merges gene and imaging data, removes missing parcels, and calculates chromosomal enrichements (with significance testing).
+    > This script parcellates map of SVM weights to schafer400 and calculates chromosomal enrichements (with significance testing).
+<br>
+
+### Schaefer 400, Seidlitz annotation strategy, leave out female donor
+1. Run [genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching_NoF.m](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching_NoF.m)
+
+    > This script specifies the parcellation and mirroring strategy to be used. It then calls functions that download AHBA data, maps probes to genes, estimates gene expression from probes, estimate voxels location of each sample in T1 freesurfer space of each donor, and generate gene expression and coexpression matrices <br>
+    <br>
+    > Save `gene_regional_expression_zscored` as `gene_regional_expression_zscored_NoF.mat`
+<br>
+
+3. Calculate chromosome enrichements with [genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz_20210308.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz_20210308.R)   
+
+    > This script parcellates map of SVM weights to schafer400 and calculates chromosomal enrichements (with significance testing).
 <br>

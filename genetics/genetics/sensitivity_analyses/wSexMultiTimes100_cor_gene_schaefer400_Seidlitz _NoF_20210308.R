@@ -28,7 +28,7 @@ data_parc_lh_sort_200 <- subset(data_parc_lh_sort, lh_schaefer400 != "65793", se
 
 ###read in gene data
 gene <- read.csv("/cbica/projects/funcParcelSexDiff/inputData/genetics/genes_20647_schaefer_V2.csv",header=FALSE)
-geneMat <- readMat("/cbica/projects/funcParcelSexDiff/inputData/genetics/gene_regional_expression_zscored_Schaefer_V2.mat")
+geneMat <- readMat("/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/ExcludeFemaleDonor/gene_regional_expression_zscored_NoF.mat")
 geneMat1<- as.data.frame(geneMat$gene.regional.expression)
 colnames(geneMat1) <- gene$V1
 geneMat2 <- cbind(lh_schaefer400_ct_200, geneMat1)
