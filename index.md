@@ -262,10 +262,20 @@ The steps below detail how to replicate this project, including statistical anal
 ### Gene Ontology Analysis
 1. Run [genetics/genetics/parcellation/schaefer1000_7networks/wSex_cor_gene_schaefer403_net7_GoEnrichements_20210308.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/parcellation/schaefer1000_7networks/wSex_cor_gene_schaefer403_net7_GoEnrichements_20210308.R)
 
-    > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, and creates the ranked gene list for GO enrichements, <br>
+    > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, and creates the ranked gene list `RankedGeneList_wSex100_Cor_schaefer1000Net7_20201123.csv` for GO enrichements, <br>
 <br>
 
-3. Calculate chromosome enrichements with [genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz%20_NoF_20210308.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/sensitivity_analyses/wSexMultiTimes100_cor_gene_schaefer400_Seidlitz%20_NoF_20210308.R)   
+2. Run gene ontology analysis with [GOrilla](http://cbl-gorilla.cs.technion.ac.il)   
 
-    > This script parcellates map of SVM weights to schafer400 and calculates chromosomal enrichements (with significance testing).
+    > Settings should be as follows:
+    > Step 1: homo sapiens
+    > Step 2: Single ranked gene list
+    > Step 3: upload RankedGeneList_wSex100_Cor_schaefer1000Net7_20201123.csv 
+    > Step 4: All
+    > Advanced parameters: 
+         > P-value threshold 10^-5
+         > Select `Output results in Microsoft Excel format`
+         > Select `Show output also in REVIGO`
+         > Unselect `Include unresolved and duplicate genes in output`
+         > Unselect `Run GOrilla in fast mode`
 <br>
