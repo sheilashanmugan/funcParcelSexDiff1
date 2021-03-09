@@ -26,7 +26,7 @@ In preparation
 PNC
 
 ### Github Repository
-<https://github.com/sheilashanmugan/funcParcelSexDiff>
+<https://github.com/sheilashanmugan/funcParcelSexDiff1>
 
 ### Path to Data on Filesystem
 /cbica/projects/funcParcelSexDiff/data
@@ -39,7 +39,7 @@ PNC
 
 <br>
 <br>
-# CODE DOCUMENTATION  
+## CODE DOCUMENTATION  
 The steps below detail how to replicate this project, including statistical analysis and figure generation.  
 
 ### Part 1: Atlas Generation and Network Parcellation  
@@ -236,7 +236,7 @@ The steps below detail how to replicate this project, including statistical anal
 
 2. Run [genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching.m](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching.m)
 
-    > This script specifies the parcellation and mirroring strategy to be used. It then calls functions that download AHBA data, maps probes to genes, estimates gene expression from probes, estimate voxels location of each sample in T1 freesurfer space of each donor, and generate gene expression and coexpression matrices <br>
+    > This script specifies the parcellation and mirroring strategy to be used. It then calls functions that download AHBA data, maps probes to genes, estimates gene expression from probes, estimates voxels location of each sample in T1 freesurfer space of each donor, and generates gene expression and coexpression matrices <br>
     <br>
     > Save `gene_regional_expression_zscored` as `gene_regional_expression_zscored.mat`
 <br>
@@ -249,7 +249,7 @@ The steps below detail how to replicate this project, including statistical anal
 ### Schaefer 400, Seidlitz annotation strategy, leave out female donor
 1. Run [genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching_NoF.m](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching_NoF.m)
 
-    > This script specifies the parcellation and mirroring strategy to be used. It then calls functions that download AHBA data, maps probes to genes, estimates gene expression from probes, estimate voxels location of each sample in T1 freesurfer space of each donor, and generate gene expression and coexpression matrices <br>
+    > This script specifies the parcellation and mirroring strategy to be used. It then calls functions that download AHBA data, maps probes to genes, estimates gene expression from probes, estimates voxels location of each sample in T1 freesurfer space of each donor, and generates gene expression and coexpression matrices <br>
     <br>
     > Save `gene_regional_expression_zscored` as `gene_regional_expression_zscored_NoF.mat`
 <br>
@@ -291,4 +291,3 @@ The steps below detail how to replicate this project, including statistical anal
 2. Calculate cell type enrichements using Lake subtypes with [genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210102.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210102.R)   
 
     > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, and calculates cell type enrichements where cell-type were assigned according to categorizations determined by Lake et al., 2018
-<br
