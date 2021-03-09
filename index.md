@@ -42,7 +42,7 @@ PNC
 # CODE DOCUMENTATION  
 The steps below detail how to replicate this project, including statistical analysis and figure generation.  
 
-### Atlas Generation and Network Parcellation  
+### Part 1: Atlas Generation and Network Parcellation  
 1. Sample selection, atlas generation, and individual network parcellation.  
 
     > These steps were completed as part of prior work (Cui et al., 2020) using scripts located at [https://github.com/ZaixuCui/pncSingleFuncParcel](https://github.com/ZaixuCui/pncSingleFuncParcel) <br>
@@ -51,7 +51,7 @@ The steps below detail how to replicate this project, including statistical anal
     <br>
     The following steps use this preprocessed data.  
 
-### Multivariate Pattern Analysis  
+### Part 2: Multivariate Pattern Analysis  
 1. Add [/matlabFunctions/Toolbox/Code_mvNMF_l21_ard_v3_release/](https://github.com/sheilashanmugan/funcParcelSexDiff1/tree/gh-pages/matlabFunctions/Toolbox/Code_mvNMF_l21_ard_v3_release) to matlab path.  
 
     > This directory contains functions called in subsequent steps  
@@ -110,7 +110,7 @@ The steps below detail how to replicate this project, including statistical anal
     > This script creates the plot in Figure 3b
 <br>
 
-### Univariate approach
+### Part 3: Univariate approach
 1. Submit [atlasLoadingScripts/sexEffect_atlasLoading_20200612.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/atlasLoadingScripts/sexEffect_atlasLoading_20200612.R) to qsub to calculate effect of sex on atlas loadings   
 
     > This script aggregates atlas loadings for all subjects, runs a GAM at each vertex to determine the effect of sex while controlling for age and motion, then corrects for multiple comparisons.  
@@ -149,7 +149,7 @@ The steps below detail how to replicate this project, including statistical anal
     > This script creates a barplot of the number of verticies that survives FDR correction for each network.
 <br>
 
-### Spin test to compare results from multivariate pattern analysis (Figure 3D) and GAMs (Figure 4A)
+### Part 4: Spin test to compare results from multivariate pattern analysis (Figure 3D) and GAMs (Figure 4A)
 1. Download and add [spintest/scripts/](https://github.com/sheilashanmugan/funcParcelSexDiff1/tree/gh-pages/spintest/scripts) to matlab path.  
 
     > This directory contains functions called in subsequent steps. These functions were originally downloaded from [here](https://github.com/spin-test/spin-test)  
@@ -172,7 +172,7 @@ The steps below detail how to replicate this project, including statistical anal
 <br>
 
 
-### Chromosomal enrichment analysis
+### Part 5: Chromosomal enrichment analysis
 ### Schaefer 1000, Fornito annotation strategy
 1. Download data from [https://figshare.com/articles/dataset/AHBAdata/6852911](https://figshare.com/articles/dataset/AHBAdata/6852911)   
 
@@ -259,6 +259,7 @@ The steps below detail how to replicate this project, including statistical anal
     > This script parcellates map of SVM weights to schafer400 and calculates chromosomal enrichements (with significance testing).
 <br>
 
+### Part 6: Gene Ontology and Cell Type Enrichement Analysis
 ### Gene Ontology Analysis
 1. Run [genetics/genetics/parcellation/schaefer1000_7networks/wSex_cor_gene_schaefer403_net7_GoEnrichements_20210308.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/parcellation/schaefer1000_7networks/wSex_cor_gene_schaefer403_net7_GoEnrichements_20210308.R)
 
@@ -267,15 +268,15 @@ The steps below detail how to replicate this project, including statistical anal
 
 2. Run gene ontology analysis with [GOrilla](http://cbl-gorilla.cs.technion.ac.il)   
 
-    > Settings should be as follows:
-    > Step 1: homo sapiens
-    > Step 2: Single ranked gene list
-    > Step 3: upload RankedGeneList_wSex100_Cor_schaefer1000Net7_20201123.csv 
-    > Step 4: All
-    > Advanced parameters: 
-         > P-value threshold 10^-5
-         > Select `Output results in Microsoft Excel format`
-         > Select `Show output also in REVIGO`
-         > Unselect `Include unresolved and duplicate genes in output`
-         > Unselect `Run GOrilla in fast mode`
+    > Settings should be as follows: <br>
+    > Step 1: homo sapiens <br>
+    > Step 2: Single ranked gene list <br>
+    > Step 3: upload RankedGeneList_wSex100_Cor_schaefer1000Net7_20201123.csv <br>
+    > Step 4: All <br>
+    > Advanced parameters: <br> 
+         > P-value threshold 10^-5 <br>
+         > Select `Output results in Microsoft Excel format` <br>
+         > Select `Show output also in REVIGO` <br>
+         > Unselect `Include unresolved and duplicate genes in output` <br>
+         > Unselect `Run GOrilla in fast mode` <br>
 <br>
