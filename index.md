@@ -173,7 +173,7 @@ The steps below detail how to replicate this project, including statistical anal
 
 
 ### Part 5: Chromosomal enrichment analysis
-##### Schaefer 1000, Fornito annotation strategy
+#### Schaefer 1000, Fornito annotation strategy
 1. Download data from [https://figshare.com/articles/dataset/AHBAdata/6852911](https://figshare.com/articles/dataset/AHBAdata/6852911)   
 
     > Download `AHBAProcessed.zip` and `AHBAData.zip`
@@ -203,7 +203,7 @@ The steps below detail how to replicate this project, including statistical anal
     > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, calculates chromosomal enrichements (with significance testing), and creates figure 5 
 <br>
 
-##### Schaefer 300, Fornito annotation strategy
+#### Schaefer 300, Fornito annotation strategy
 1. Read annotation file from figshare into Matlab
 
     > Annotation file is in `AHBAData/data/genes/parcellations/lh.Schaefer300_7net.annot` <br>
@@ -228,7 +228,7 @@ The steps below detail how to replicate this project, including statistical anal
     > This script parcellates map of SVM weights to schafer300, merges gene and imaging data, removes missing parcels, and calculates chromosomal enrichements (with significance testing).
 <br>
 
-##### Schaefer 400, Seidlitz annotation strategy
+#### Schaefer 400, Seidlitz annotation strategy
 1. Download all files from [genetics/genetics/allen_processing/geneExpression_Repository](https://github.com/sheilashanmugan/funcParcelSexDiff1/tree/gh-pages/genetics/genetics/allen_processing/geneExpression_Repository)
 
     > This repository contains scripts that align microarray gene expression data from AHBA donors to the left hemisphere of the Schaefer 400 parcellation. There were originally downloaded from [geneExpression_Repository](https://github.com/RafaelRomeroGarcia/geneExpression_Repository) 
@@ -246,7 +246,7 @@ The steps below detail how to replicate this project, including statistical anal
     > This script parcellates map of SVM weights to schafer400 and calculates chromosomal enrichements (with significance testing).
 <br>
 
-##### Schaefer 400, Seidlitz annotation strategy, leave out female donor
+#### Schaefer 400, Seidlitz annotation strategy, leave out female donor
 1. Run [genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching_NoF.m](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/allen_processing/geneExpression_Repository/main_sampleMatching_NoF.m)
 
     > This script specifies the parcellation and mirroring strategy to be used. It then calls functions that download AHBA data, maps probes to genes, estimates gene expression from probes, estimates voxels location of each sample in T1 freesurfer space of each donor, and generates gene expression and coexpression matrices <br>
@@ -260,7 +260,7 @@ The steps below detail how to replicate this project, including statistical anal
 <br>
 
 ### Part 6: Gene Ontology and Cell Type Enrichement Analysis
-##### Gene Ontology Analysis
+#### Gene Ontology Analysis
 1. Run [genetics/genetics/parcellation/schaefer1000_7networks/wSex_cor_gene_schaefer403_net7_GoEnrichements_20210308.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/parcellation/schaefer1000_7networks/wSex_cor_gene_schaefer403_net7_GoEnrichements_20210308.R)
 
     > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, and creates the ranked gene list `RankedGeneList_wSex100_Cor_schaefer1000Net7_20201123.csv` for GO enrichements, <br>
@@ -281,7 +281,7 @@ The steps below detail how to replicate this project, including statistical anal
          > Unselect `Run GOrilla in fast mode` <br>
 <br>
 
-##### Cell Type Enrichement Analysis
+#### Cell Type Enrichement Analysis
 1. This analysis uses data downloaded and prepared in Part 5, Schaefer1000, steps 1-3
 
 2. Calculate cell type enrichements using PSP subtypes with [genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_PSP_schaefer1000_fornito_20210102.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_PSP_schaefer1000_fornito_20210102.R)   
