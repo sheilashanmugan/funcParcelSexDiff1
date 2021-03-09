@@ -280,3 +280,15 @@ The steps below detail how to replicate this project, including statistical anal
          > Unselect `Include unresolved and duplicate genes in output` <br>
          > Unselect `Run GOrilla in fast mode` <br>
 <br>
+
+### Cell Type Enrichement Analysis
+1. This analysis uses data downloaded and prepared in Part 5, Schaefer1000, steps 1-3
+
+2. Calculate cell type enrichements using PSP subtypes with [genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_PSP_schaefer1000_fornito_20210102.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_PSP_schaefer1000_fornito_20210102.R)   
+
+    > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, and calculates cell type enrichements where cell-type were assigned according to categorizations determined by Seidlitz et al., 2020
+    
+2. Calculate cell type enrichements using Lake subtypes with [genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210102.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210102.R)   
+
+    > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, and calculates cell type enrichements where cell-type were assigned according to categorizations determined by Lake et al., 2018
+<br
