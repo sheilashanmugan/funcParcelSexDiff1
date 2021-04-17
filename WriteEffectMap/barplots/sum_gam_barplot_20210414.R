@@ -9,17 +9,47 @@ library(ggpattern)
 theme_set(theme_classic(base_size = 16))
 
 #read in brain data
-data_brain1 <- readMat("/cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects/SexEffects_Matrix_Gam_17NetAll_FDR_Sig.mat")
+data_brain1 <- readMat("/cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects/SexEffect_AtlasLoading_17_Network_1.mat")
 data_brain <-data_brain1$SexEffects.Matrix
 
+SexEffects_Matrix = as.numeric(matrix(0, 17, 17734));
+for (i in c(1:17)) {
+SexEffects = readMat(paste0('/cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects/SexEffect_AtlasLoading_17_Network_', as.character(i), '.mat'));
+SexEffects_Matrix(i,) <- SexEffects$Gam.Z.FDR.Sig.Vector.All;
+}
 
+
+
+
+library('R.matlab');
+library('mgcv');
+library('ggplot2');
+library('visreg');
+
+UnivariateFolder = '/cbica/projects/funcParcelSexDiff/results/GamAnalysis/AtlasLoading/SexEffects';
+sumpos = as.numeric(matrix(0, 1, 17));
+sumneg = as.numeric(matrix(0, 1, 17));
+for (i in c(1:17)) {
+  tmp_Data = readMat(paste0(UnivariateFolder, '/SexEffect_AtlasLoading_17_Network_', as.character(i), '.mat'));
+  sumpos[i] = length(which(tmp_Data$Gam.Z.FDR.Sig.Vector.All > 0));
+  sumneg[i] = length(which(tmp_Data$Gam.Z.FDR.Sig.Vector.All < 0));
+}
+
+
+### SHOULD BE LENGHT, not just X!!
 #function to sum negative vertecies
-sumneg <- function(x) sum(x[x<0])
+sumneg <- function(x) sum(length(x[x<0]))
 sums_neg<- as.data.frame(apply(data_brain,1,sumneg))
+
 
 #function to sum positive vertecies
 sumpos <- function(x) sum(x[x>0])
 sums_pos<- as.data.frame(apply(data_brain,1,sumpos))
+
+
+sums_neg <- as.data.frame(sumneg)
+sums_pos <- as.data.frame(sumpos)
+
 
 #name columns, make row number the network label, and combine positive and negative sums into 1 df
 colnames(sums_neg) <- "vertecies"

@@ -144,7 +144,7 @@ The steps below detail how to replicate this project, including statistical anal
     > This script aggregates group level matricies for each network that denote significant verticies. The output of this step is the input for step 6.
 <br>
 
-6. Create barplot in Figure 4C with [WriteEffectMap/barplots/sum_gam_barplot_20201012.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/WriteEffectMap/barplots/sum_gam_barplot_20201012.R)
+6. Create barplot in Figure 4C with [WriteEffectMap/barplots/sum_gam_barplot_20210417.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/WriteEffectMap/barplots/sum_gam_barplot_20210417.R)
 
     > This script creates a barplot of the number of verticies that survives FDR correction for each network.
 <br>
