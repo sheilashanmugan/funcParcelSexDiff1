@@ -135,65 +135,9 @@ t8 <- merge (t5, t5se, by = "cellType")
 
 colnames(t8)<- c("cellType", "Rank", "se")
 
+write.csv(t8, file="/Users/sheilash/Desktop/t8.csv")
 
-#not ordered by rank
-fillcolor <- c("#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", 
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF");
-
-
-BorderColor <- c(#FF8787", "#FF8787", "#DBA73A", "#04CDCF", "#04CDCF", 
-                 "#04CDCF", "#04CDCF", "#04CDCF", "#04CDCF", "#04CDCF",
-                 "#04CDCF", "#04CDCF", "#04CDCF", "#04CDCF", "#04CDCF",
-                 "#04CDCF", "#00EF00", "#2CB7FF", "#2CB7FF", "#2CB7FF",
-                 "#2CB7FF", "#2CB7FF", "#2CB7FF", "#2CB7FF", "#2CB7FF",
-                 "#2CB7FF", "#2CB7FF", "#2CB7FF", "#8CC037", "#FF6DD7",
-                 "#FF6DD7", "#DA86FF", "#FE0000", "#FC005F", "#FC005F");
-
-LineType <- c("solid",  "dashed", "dashed", "solid", "solid",
-              "dashed", "solid", "dashed", "solid", "solid",
-              "dashed", "dashed", "solid", "dashed", "solid",
-              "dashed", "dashed", "dashed", "dashed", "dashed",
-              "dashed",  "dashed", "dashed", "dashed", "dashed",
-              "dashed",  "dashed", "dashed", "solid", "dashed",
-              "dashed",  "solid", "dashed", "dashed", "solid");
-
-#ordered by rank
-
-
-fillcolor <- c("#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", 
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF",
-               "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF");
-
-
-BorderColor <- c("#FF8787", "#FF8787", "#DBA73A", "#04CDCF", "#04CDCF", 
-  "#04CDCF", "#04CDCF", "#04CDCF", "#04CDCF", "#04CDCF",
-  "#04CDCF", "#04CDCF", "#04CDCF", "#04CDCF", "#04CDCF",
-  "#04CDCF", "#00EF00", "#2CB7FF", "#2CB7FF", "#2CB7FF",
-  "#2CB7FF", "#2CB7FF", "#2CB7FF", "#2CB7FF", "#2CB7FF",
-  "#2CB7FF", "#2CB7FF", "#2CB7FF", "#8CC037", "#FF6DD7",
-  "#FF6DD7", "#DA86FF", "#FE0000", "#FC005F", "#FC005F");
-
-LineType <- c("solid",  "solid", "solid", "solid", "solid",
-              "solid", "dashed", "dashed", "dashed", "dashed",
-              "dashed", "dashed", "dashed", "dashed", "dashed",
-              "dashed", "dashed", "dashed", "dashed", "dashed",
-              "dashed",  "dashed", "dashed", "dashed", "solid",
-              "dashed",  "dashed", "dashed", "dashed", "solid",
-              "dashed",  "solid", "dashed", "solid", "solid");
-
-
-t9 <- cbind(t8, fillcolor, BorderColor, LineType)
-
-
+t9<- read.csv("/Users/sheilash/Desktop/celltype_colormap.csv")
 
 
 #make color label an ordered factor so ggplot can match the color to network
@@ -218,6 +162,9 @@ bordermap=t9 %>% select(cellType,BorderColor)%>%unique()
 overall_se <- std.error(df3$corrSigRanked)
 
 
+#figure S2
+tiff("/Users/sheilash/Desktop/projects/pfn_sex_diff/paper/figures/genetics/cellType_enrichments.tiff", width = 5, height = 5, units = 'in', res = 300)
+
 p<-ggplot(data=t9, aes(x=cellType, y=Rank)) +
   geom_bar(stat="identity", fill=colormap$fillcolor ,
            colour = bordermap$BorderColor, linetype = linemap$LineType, width = 0.8) + geom_errorbar(aes(ymin=Rank-se, ymax=Rank+se), width=0, linetype = linemap$LineType, position=position_dodge(.9)) +
@@ -226,21 +173,14 @@ p<-ggplot(data=t9, aes(x=cellType, y=Rank)) +
   geom_hline(aes(yintercept = as.numeric(0))) +
   #ylim(-2799, 1010) +
   #scale_y_discrete(breaks = c(-2000, -1000, 1000)) +
-  theme(legend.position="none") + theme(axis.text.x = element_text(size= 10), axis.text.y = element_text(size= 10, color = bordermap$BorderColor), axis.title=element_text(size = 12))
+  theme(legend.position="none") + theme(axis.text.x = element_text(size= 10), axis.text.y = element_text(size= 10, color = "grey30"), axis.title=element_text(size = 12))
 p
 
 
+dev.off()
 
-p<-ggplot(data=t9, aes(x=cellType, y=Rank)) +
-  geom_bar(stat="identity", fill=colormap$fillcolor ,
-           colour = bordermap$BorderColor, linetype = linemap$LineType, width = 0.8) + geom_errorbar(aes(ymin=Rank-se, ymax=Rank+se), width=0, size= 0.3, position=position_dodge(.9)) +
-  geom_point(data=t9, aes(y=Rank, x=cellType), size = 0.8) +
-  coord_flip() + xlab("Chromosome") + ylab("Enrichment") +
-  geom_hline(aes(yintercept = as.numeric(0))) +
-  #ylim(-2799, 1010) +
-  #scale_y_discrete(breaks = c(-2000, -1000, 1000)) +
-  theme(legend.position="none") + theme(axis.text.x = element_text(size= 10), axis.text.y = element_text(size= 10, color = bordermap$BorderColor), axis.title=element_text(size = 12))
-p
+
+
 
 
 
@@ -278,50 +218,6 @@ for (j in 1:length(t5$cellType)){
   perm.pval[j, 1]  <- cellType_tmp
   perm.pval[j, 2] <- genenum
   perm.pval[j, 3] <- pval
-}
-
-
-df_enrich_pval <- merge(t5, perm.pval, by = "cellType")
-df_enrich_pval1 <- df_enrich_pval[with(df_enrich_pval, order(-t7)),]
-
-
-
-
-
-perm.pval <- data.frame(matrix(NA,nrow=length(t5$cellType),ncol=4))
-colnames(perm.pval)<- c("cellType", "NumGenes", "pval", "p_fdr")
-
-t5vec <- as.list(as.character(t5$cellType))
-df3gene_unique<- unique(df3$gene)
-
-for (j in 1:length(t5$cellType)){
-  cellType_tmp <- t5vec[j]
-  All_tmp <- subset(df3, cellRefined == cellType_tmp)
-  genenum <- length(All_tmp$gene)
-  
-  if (genenum > 0) {
-    null.dist.medians <-data.frame(matrix(NA,nrow=1000,ncol=1))
-    colnames(null.dist.medians)<- "median_rank"
-    for (i in 1:1000){
-      set.seed(i)
-      genelisttmp <- sample(df3gene_unique, genenum, replace = FALSE, prob = NULL)
-      dfgenestmp <- filter(df3, gene %in% genelisttmp)
-      median_rank <- median(dfgenestmp$corrSigRanked)
-      null.dist.medians[i, 1] <- median_rank
-    }
-  } 
-  newdata <- subset(t5, cellType == cellType_tmp)
-  if (newdata$t7 > 0){
-    pval<- (sum(null.dist.medians$median_rank > median(All_tmp$corrSigRanked)))/1000
-  }
-  if (newdata$t7 < 0){
-    pval<- (sum(null.dist.medians$median_rank < median(All_tmp$corrSigRanked)))/1000
-  }
-  perm.pval[j, 1]  <- cellType_tmp
-  perm.pval[j, 2] <- genenum
-  perm.pval[j, 3] <- pval
-  p_fdr <- p.adjust(pval, "fdr", n=length(levels(t5$cellType)))
-  perm.pval[j, 4] <- p_fdr
 }
 
 
