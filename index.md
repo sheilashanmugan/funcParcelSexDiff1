@@ -288,6 +288,10 @@ The steps below detail how to replicate this project, including statistical anal
 
     > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, and calculates cell type enrichements where cell-type were assigned according to categorizations determined by Seidlitz et al., 2020
     
-2. Calculate cell type enrichements using Lake subtypes with [genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210515.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210515.R)   
+3. Calculate cell type enrichements using Lake subtypes with [genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210515.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210515.R)   
+
+    > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, calculates cell type enrichements where cell-type were assigned according to categorizations determined by Lake et al., 2018, and generates Supplementary Figure 2.
+    
+4. Determine which X-linked genes belong to cell type sub-classes with expression patterns that correlate with sex differences in topography  [genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210515.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/genetics/genetics/cellTypes/schaefer1000_fornito/wSexMultiTimes100_cor_gene_cellTypeBrain_LakeAll_schaefer1000_fornito_20210515.R)   
 
     > This script parcellates map of SVM weights to schafer1000, merges gene and imaging data, removes missing parcels, calculates cell type enrichements where cell-type were assigned according to categorizations determined by Lake et al., 2018, and generates Supplementary Figure 2.

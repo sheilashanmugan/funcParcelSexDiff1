@@ -61,9 +61,7 @@ geneMat2_sort_500 <- subset(geneMat2_sort, select=-V1)
 img_geneMatChrom_500 <- merge(data_parc_lh_parcnum_sort,geneMat2_sort_500, by="parcNum")
 
 
-rois <- read.csv("/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/github/Schaefer2018_1000Parcels_7Networks_order_FSLMNI152_2mmCentroid_RAS.csv") 
-#above csv downloaded from here- https://github.com/ThomasYeoLab/CBIG/blob/master/stable_projects/brain_parcellation/Schaefer2018_LocalGlobal/Parcellations/MNI/Centroid_coordinates/Schaefer2018_1000Parcels_7Networks_order_FSLMNI152_2mm.Centroid_RAS.csv
-#removed spaces in column names prior to reading in
+rois <- read.csv("/cbica/projects/funcParcelSexDiff/inputData/genetics/sensitivity_analyses/parcellation/data/genes/parcellations/github/Schaefer2018_1000Parcels_7Networks_order_FSLMNI152_2mmCentroid_RAS.csv")
 roislh <- rois[1:500,]
 
 img_geneMatChrom_roi_500 <- merge(roislh, img_geneMatChrom_500, by.x = "RoiLabel", by.y= "parcNum",all = FALSE)
@@ -164,6 +162,8 @@ setDT(t5, keep.rownames = "chromosome")
 t5$chromosome <- as.factor(t5$chromosome)
 
 t3se <- sapply(levels(df3$chromRefined)[-1], function(x) std.error(df3$corrSigRanked[which(df3$chromRefined==x)],na.rm = TRUE)) # which(chromRefined==x) --  get an index of all the trues,,,   indexing out of t2Ranked where chromRefined==x.... find the median of t2Ranked for each of these levels
+t3ci <- sapply(levels(df3$chromRefined)[-1], function(x) t.test(df3$corrSigRanked[which(df3$chromRefined==x)],na.rm = TRUE)$conf.int) # which(chromRefined==x) --  get an index of all the trues,,,   indexing out of t2Ranked where chromRefined==x.... find the median of t2Ranked for each of these levels
+
 t3se
 t5se <- as.data.frame(t3se)
 setDT(t5se, keep.rownames = "chromosome")
@@ -215,7 +215,7 @@ overall_se <- std.error(df3$corrSigRanked)
 tiff("/Users/sheilash/Desktop/projects/pfn_sex_diff/paper/figures/genetics/chrom_enrichments.tiff", width = 5, height = 5, units = 'in', res = 300)
 p<-ggplot(data=t9, aes(x=chromosome, y=Rank)) +
   geom_bar(stat="identity", fill=colormap$fillcolor ,
-           colour = bordermap$BorderColor, linetype = linemap$LineType, width = 0.8) + geom_errorbar(aes(ymin=Rank-se, ymax=Rank+se), width=0.15, size= 0.4, position=position_dodge(.9)) +
+           colour = bordermap$BorderColor, linetype = linemap$LineType, width = 0.8) + geom_errorbar(aes(ymin=Rank-ci, ymax=Rank+ci), width=0.15, size= 0.4, position=position_dodge(.9)) +
   geom_point(data=t9, aes(y=Rank, x=chromosome), size = 0.4) +
   coord_flip() + xlab("Chromosome") + ylab("Enrichment") +
   geom_hline(aes(yintercept = as.numeric(0))) +
