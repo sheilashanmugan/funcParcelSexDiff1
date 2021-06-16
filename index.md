@@ -268,7 +268,7 @@ The steps below detail how to replicate this project, including statistical anal
 
 2. Run gene ontology analysis with [GOrilla](http://cbl-gorilla.cs.technion.ac.il)   
 
-    > Note: the following analysis generating Supplementary Figure 2 was run on March 9, 2021
+    > Note: the following analysis generating Supplementary Figure 2 was run on March 9, 2021  <br>
     > Settings should be as follows: <br>
     > Step 1: homo sapiens <br>
     > Step 2: Single ranked gene list <br>
