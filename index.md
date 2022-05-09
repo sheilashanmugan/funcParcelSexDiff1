@@ -11,7 +11,7 @@ Theodore D. Satterthwaite
 
 ### Analytic Replicator
 Zaixu Cui (imaging)    
-Jakob Seidlitz (genetics)
+Jakob Seidlitz (genetics)    
 Max Bertolero (Figure 2b)
 
 ### Collaborators
@@ -53,7 +53,7 @@ The steps below detail how to replicate this project, including statistical anal
     The following steps use this preprocessed data.  
 <br>
     
-2. Create violin plot in Figure 2b with [diceOverlap/diceOverlapn693_17net_20220506.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/diceOverlap/diceOverlapn693_17net_20220506.R)
+2. Create violin plot in Figure 2b with [atlasLoadingScripts/diceOverlapn693_17net_20220506.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/atlasLoadingScripts/diceOverlapn693_17net_20220506.R)
 
     > This script creates a violin plot of the Dice coefficient between the group atlas and each subject for all 17 networks.
 <br>
