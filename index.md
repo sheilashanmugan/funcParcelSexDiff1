@@ -1,7 +1,7 @@
 <br>
 <br>
 # Sex Differences in Functional Topography of Association Networks
-*Prior work has shown that there is substantial interindividual variation in the spatial distribution of functional networks across the cerebral cortex, or “functional topography”. However, it remains unknown whether there are normative developmental sex differences in the topography of individualized networks. Here we leverage regularized non-negative matrix factorization to define individualized functional networks in 693 youth ages 8-23y imaged with fMRI as part of the Philadelphia Neurodevelopmental Cohort. Support vector machines were applied to examine sex differences in multivariate patterns of functional topography. Generalized additive models with penalized splines were then used to examine the impact of sex on topography at a more granular level. We used chromosomal enrichment analyses to assess the correlation between gene expression (Allen Human Brain Atlas) and sex differences in functional topography, evaluating significance with gene-wise non-parametric permutation tests. This project identifies normative developmental sex differences in the functional topography of association networks and highlight the role of sex as a biological variable in shaping functional brain development in youth.*
+*Prior work has shown that there is substantial interindividual variation in the spatial distribution of functional networks across the cerebral cortex, or “functional topography”. However, it remains unknown whether there are normative sex differences in the topography of individualized networks. Here we leverage regularized non-negative matrix factorization to define individualized functional networks in 693 youth ages 8-23y imaged with fMRI as part of the Philadelphia Neurodevelopmental Cohort. Support vector machines were applied to examine sex differences in multivariate patterns of functional topography. Generalized additive models with penalized splines were then used to examine the impact of sex on topography at a more granular level. We used chromosomal enrichment analyses to assess the correlation between gene expression (Allen Human Brain Atlas) and sex differences in functional topography, evaluating significance with gene-wise non-parametric permutation tests. This project identifies normative sex differences in the functional topography of association networks and highlight the role of sex as a biological variable in shaping functional topography.*
 
 ### Project Lead
 Sheila Shanmugan
@@ -12,6 +12,7 @@ Theodore D. Satterthwaite
 ### Analytic Replicator
 Zaixu Cui (imaging)    
 Jakob Seidlitz (genetics)
+Max Bertolero (Figure 2b)
 
 ### Collaborators
 Jakob Seidlitz, Zaixu Cui, Azeez Adebimpe, Danielle S. Bassett, Maxwell A. Bertolero, Christos Davatzikos, Damien A. Fair, Raquel E. Gur, Ruben C. Gur, Hongming Li, Adam Pines, Armin Raznahan, David R. Roalf, Russell T. Shinohara, Jacob Vogel, Daniel H. Wolf, Yong Fan, Aaron Alexander-Bloch  
@@ -50,6 +51,13 @@ The steps below detail how to replicate this project, including statistical anal
     > Loading matrices for each of the 693 subjects used in this project can be found here: /cbica/projects/funcParcelSexDiff/data/Revision/SingleParcellation/SingleAtlas_Analysis/FinalAtlasLoading <br>
     <br>
     The following steps use this preprocessed data.  
+<br>
+    
+2. Create violin plot in Figure 2b with [diceOverlap/diceOverlapn693_17net_20220506.R](https://github.com/sheilashanmugan/funcParcelSexDiff1/blob/gh-pages/diceOverlap/diceOverlapn693_17net_20220506.R)
+
+    > This script creates a violin plot of the Dice coefficient between the group atlas and each subject for all 17 networks.
+<br>
+
 
 ### Part 2: Multivariate Pattern Analysis  
 1. Add [/matlabFunctions/Toolbox/Code_mvNMF_l21_ard_v3_release/](https://github.com/sheilashanmugan/funcParcelSexDiff1/tree/gh-pages/matlabFunctions/Toolbox/Code_mvNMF_l21_ard_v3_release) to matlab path.  
